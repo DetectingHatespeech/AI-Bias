@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Hey guys, welcome to the best TikTok Study
 
 You can use the [editor on GitHub](https://github.com/TikTokStudy/AI-Bias/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
