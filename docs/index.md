@@ -1,6 +1,8 @@
 # **Decoding Biases in &quot;Toxic&quot; Speech Detection**
 
 The Google Perspective API and minority discrimination
+* [Introduction](#introduction)
+
 
 ## **1. Introduction**
 
@@ -52,7 +54,7 @@ One of the inherent limitations to the way we built our datasets comes from the 
 
 We then created Scattertexts in Python. Scattertext (https://github.com/JasonKessler/scattertext) is a python library that creates helpful data visualizations for texts. It extracts terms from texts and analyses them based on a chosen classifier, here a toxicity score above or below 0.7. This score is the same as advised by Perspective API and as used by the New York Times. The visualizations, shown further below, place terms on a scale from Infrequent to frequent per category. This allowed us to identify the main terms present primarily in toxic tweets which guided our further analysis. Given the large amount of noise in our dataset, we were unable to rely only on quantitative methods like scattertext. We extracted the underlying dataset the scattertext is built upon, which is essentially a frequency list of the terms used in the tweets per category.
 
-We used these frequency lists to guide a qualitative analysis. First, we identified all terms which appear more often in toxic than non-toxic tweets. Second, we ordered the terms based on frequency, beginning with the most common and thus relevant terms. Based on the list, we identified key terms that are also used positively, based upon an initial screening of the tweets. These were words like “gay”, “Blacks”, “vaginas”, or “ass”. We then filtered the original tweet data set to read and analyse “toxic” tweets containing the identified terms. Out of these lists, we identified tweets that appeared representative of wider misidentification of “toxicity”. For example, the term “vagina” appeared XX times, out of which XX times in toxic tweets. This signals a likely systematic error of the Perspective system since vagina is also an official term. We then marked several tweets as likely mismatch to inductively identify common patterns of the algorithm. Based on the large datasets, this allowed us to get a good understanding of the main “triggers” of the algorithm.
+We used these frequency lists to guide a qualitative analysis. First, we identified all terms which appear more often in toxic than non-toxic tweets. Second, we ordered the terms based on frequency, beginning with the most common and thus relevant terms. Based on the list, we identified key terms that are also used positively, based upon an initial screening of the tweets. These were words like “gay”, “Blacks”, “vaginas”, or “ass”. We then filtered the original tweet data set to read and analyse “toxic” tweets containing the identified terms. Out of these lists, we identified tweets that appeared representative of wider misidentification of “toxicity”. For example, the term “vagina” appeared 55 times, out of which 51 times in toxic tweets. This signals a likely systematic error of the Perspective system since vagina is also an official term. We then marked several tweets as likely mismatch to inductively identify common patterns of the algorithm. Based on the large datasets, this allowed us to get a good understanding of the main “triggers” of the algorithm.
 
 
 ## **4. Distribution of positive/negative language**
@@ -75,13 +77,13 @@ The higher proportion of negative language within high toxicity samples compared
 
 Scattertext is a python tool that enables users to interactively visualise differences in two corpi of texts (Kessler, 2017). Using this tool allowed us to differentiate between the frequencies of word uses in the tweets classified as toxic as opposed to non-toxic tweets. In Figure 1, a scattertext graph shows these differences for the LGBTQ relating dataset. In general it can be noted that 6429 out of 25000 tweets are labeled as toxic, compared to the other datasets this is almost three times the amount of toxic tweets. Second, to understand the wealth of information contained in the graph it is important to know how the distribution is organised. Each point of the graph represents a word, the higher it is ranked on the y-axis the more often it was used in a toxic tweet and the further right on the x-axis, the more it was used by non-toxic tweets. The closer a point is to the axis, the more its usage is exclusive to the category. A dark blue dot in the top left corner therefore represents a tweet often used in a toxic tweet while not often used in a non-toxic tweet. These words in Figure 1, are most notably swearwords and references to sexual matters. The lighter points represent words used non-discriminatory by both categories. The most frequent of these words are located in the top right hand corner. These include words refering to sexual orientations and were often included in our hashtags queries, such as gay, lgbt or queer. Frequent non-toxic words and infrequent toxic words include counseling, belief, gender or nation. No clear indication of the context of these words and the connotations of their meaning can be inferred.
 
-**Figure 1** : Visualisation of words used in toxic and non-toxic tweets, LGBTQ !
+**Figure 1** : Visualisation of words used in toxic and non-toxic tweets, LGBTQ 
 <img width="1248" alt="Screenshot 2021-12-15 at 16 19 05" src="https://user-images.githubusercontent.com/92430081/146241423-b2b7b964-d3e5-48c1-82cd-5e32d5b8d591.png">
 
 
 Figure 2 visualises the same relationship between toxic and non-toxic tweets for the bodypositivity corpus. From the first view the distribution looks similar to Figure 1. It is noticeable that less dark blue points appear in the top left corner. This suggests that less words were exclusively used by toxic tweets. These high precision words include swear words and references to body parts, mostly sexual parts and genitals. A similarity to the first figure is the lack of distinct non-toxic and highly frequent words. In this case the words in the bottom left corner include fancy, scale, mindfulness, or holiday and again no coherent meaning for this cluster could be recognised. In the top right corner are the most used words displayed and as expected these are either words that are inherently characteristical for this dataset, for reasons of selection criteria, or because they are generally frequently used words (at, the, to, ...).
 
-**Figure 2:** Visualisation of words used in toxic and non-toxic tweets, Body Positivity ![]<img width="1233" alt="Screenshot 2021-12-15 at 16 07 44" src="https://user-images.githubusercontent.com/92430081/146241457-501e1283-dc84-49f2-b9f6-bb4122b8b5b6.png">
+**Figure 2:** Visualisation of words used in toxic and non-toxic tweets, Body Positivity <img width="1233" alt="Screenshot 2021-12-15 at 16 07 44" src="https://user-images.githubusercontent.com/92430081/146241457-501e1283-dc84-49f2-b9f6-bb4122b8b5b6.png">
 
 
 Figure 3 is the scattertext plot for our dataset containing tweets focused on anti-racism. This dataset has the lowest count of as toxic classified tweets of all, with 840 out of 24160. Our analysis of the positive and negative distribution of support for this movement showed that most tweets in this category are indeed non-toxic and might use offensive or reclaimed terms to address issues salient for this group. The distinct cluster of toxic, frequent terms is again composed of offensive language but for the distinct non-toxic and frequent terms some coherence is visible. The terms breonna, justiceforall and say their (names) all refer to victims of often deadly police brutality in the USA. One limitation of this dataset is revealed by the contamination of other languages despite the language filter applied. Terms such as german greetings (morgen, guten morgen) or hindi words (जस). These indicate that a more thorough data cleaning would have been appropriate and that the selection filters in twitter do not work costently.
@@ -93,7 +95,7 @@ Figure 3 is the scattertext plot for our dataset containing tweets focused on an
 
 Figure 4 concerns the last group of social movements, feminism. This scattertext includes overall less infrequent terms, indicating a more coherent set of used words for both toxic and non-toxic tweets. Most and more words than in the other plots are clustered in the top right corner. These most frequently and indiscriminately used terms are again terms closely related to our selection criteria or commonly used words. Characteristic for this dataset are the words womenempowerment, feminism, womensday, womensupportingwomen and patriarchy which are mostly used in a non toxic context.
 
-**Figure 4** : Visualisation of words used in toxic and non-toxic tweets, Feminism !
+**Figure 4** : Visualisation of words used in toxic and non-toxic tweets, Feminism 
 <img width="1265" alt="Screenshot 2021-12-15 at 15 56 34" src="https://user-images.githubusercontent.com/92430081/146241569-9b0bd549-5722-4ff6-8e32-b8e3a4600fd3.png">
 
 
@@ -109,8 +111,9 @@ For the feminist movement, some of the speech is silenced merely for referencing
 
 The algorithm appears to struggle a lot with speech by the LGBTQ+ community. Especially the word gay nearly always triggers the algorithm. Following the findings by Blue (2017), there appear to have been some improvements, however, the algorithm is still triggered by repeated mentioning of LGBTQ+ identity terms.
 
+**Table 1:** Main identified problems per cluster. The bottom row shows representative example tweets with the corresponding toxicity score assigned by the Perspective API.
+
 <img width="533" alt="Screenshot 2021-12-15 125023" src="https://user-images.githubusercontent.com/92430081/146181550-092816e7-9d8a-401e-80e0-a680ae54d15c.png">
-Table 1. Main identified problems per cluster. The bottom row shows representative example tweets with the corresponding toxicity score assigned by the Perspective API.
 
 ## **7. Research contributions and policy implications**
 
