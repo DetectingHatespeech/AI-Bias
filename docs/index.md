@@ -2,8 +2,13 @@
 
 The Google Perspective API and minority discrimination
 * [Introduction](#1-introduction)
-
-
+* [Literature Review](#2-literature-review)
+* [Methodology](#3-methodology)
+* [Distribution of positive/negative language](#4-Distribution-of-positivenegative-language)
+* [ScatterTexts](#5-scattertexts)
+* [Qualitative Analysis](#6-qualitative-analysis)
+* [Research contributions and policy implications](#7-research-contributions-and-policy-implications)
+* [References](#8-references)
 ## **1. Introduction**
 
 Social media platforms have revolutionized the public debate in the past years. Everyone with an internet connection is able to participate in the public discourse, publish its opinion and share content, regardless of skin colour, origin or sexual orientation. Some even understand social media in a Habermasian way as the perfect place for public debate, laying the foundation for rational decision-making based on the objective interpretation of arguments and thus for a true democracy (Willis 2020, 513).
