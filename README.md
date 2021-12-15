@@ -5,7 +5,7 @@ Our project sought to identify how a hate speech detection algorithm, Google’s
 LINK RESULTS
 
 # CODE
-This [folder](#data) contains the code we used to conduct our analysis. 
+This [folder](#https://github.com/DetectingHatespeech/AI-Bias/tree/main/Code) contains the code we used to conduct our analysis. 
 
 ##AI_Biases_Notebook.ipynb
 This python notebook contains the code used to scrape the tweets using the minet library, as well as the code to create scatter texts and frequency lists we relied upon in our analysis.
