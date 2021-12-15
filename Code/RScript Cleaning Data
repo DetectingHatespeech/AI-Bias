@@ -6,33 +6,96 @@
 
 ############################
 
+
 library(openxlsx)
 
 ##clean feminism dataset
+final_df_Women_clean <- NA
 
-final\_df\_Women\_clean \&lt;- NA
+final_df_Women_clean <- final_df_Women[,c("text_id","TOXICITY","Dummy")]
 
-final\_df\_Women\_clean \&lt;- final\_df\_Women[,c(&quot;text\_id&quot;,&quot;TOXICITY&quot;,&quot;Dummy&quot;)]
 
-final\_df\_Women\_clean \&lt;- data.frame(sapply(final\_df\_Women[,c(&quot;text&quot;,&quot;text\_id&quot;,&quot;TOXICITY&quot;,&quot;Dummy&quot;)],
+final_df_Women_clean <- data.frame(sapply(final_df_Women[,c("text","text_id","TOXICITY","Dummy")],
+                                          function(x){
+                                            x = gsub("@\\w+", "", x) # remove at(@)
+                                            x = gsub("[[:punct:]]", "", x) # remove punctuation
+                                            x = gsub("[[:digit:]]", "", x) # remove numbers/Digits
+                                            x = gsub("http\\w+", "", x)  # remove links http
+                                            x = gsub("[ |\t]{2,}", "", x) # remove tabs
+                                            x = gsub("^ ", "", x)  # remove blank spaces at the beginning
+                                            x = gsub(" $", "", x) # remove blank spaces at the end   
+                                            }
+                                          )
+                                   )
+final_df_Women_clean[,c("text_id","TOXICITY","Dummy")]<-final_df_Women[,c("text_id","TOXICITY","Dummy")]
 
-function(x){
+write.xlsx(final_df_Women_clean, "final_df_Women_clean.xlsx")
 
-x = gsub(&quot;@\\w+&quot;, &quot;&quot;, x) # remove at(@)
+##clean LGBTQ dataset
+View(Final_LGBTQ_clean)
+Final_LGBTQ_clean <- NA
 
-x = gsub(&quot;[[:punct:]]&quot;, &quot;&quot;, x) # remove punctuation
+Final_LGBTQ_clean <- data.frame(sapply(Final_LGBTQ[,c("text")],
+                                          function(x){
+                                            x = gsub("@\\w+", "", x) # remove at(@)
+                                            x = gsub("[[:punct:]]", "", x) # remove punctuation
+                                            x = gsub("[[:digit:]]", "", x) # remove numbers/Digits
+                                            x = gsub("http\\w+", "", x)  # remove links http
+                                            x = gsub("[ |\t]{2,}", "", x) # remove tabs
+                                            x = gsub("^ ", "", x)  # remove blank spaces at the beginning
+                                            x = gsub(" $", "", x) # remove blank spaces at the end   
+                                          }
+)
+)
+Final_LGBTQ_clean[,c("text_id","TOXICITY","Dummy")]<-Final_LGBTQ[,c("text_id","TOXICITY","Dummy")]
+write.xlsx(Final_LGBTQ_clean, "Final_LGBTQ_clean.xlsx")
 
-x = gsub(&quot;[[:digit:]]&quot;, &quot;&quot;, x) # remove numbers/Digits
+##clean Bodypositive dataset
+View(final_df_bodypositive_clean)
+Test_bodypositive_clean <- NA
 
-x = gsub(&quot;http\\w+&quot;, &quot;&quot;, x) # remove links http
+Test_bodypositive_clean <- data.frame(sapply(final_df_bodypositive[,c("text")],
+                                       function(x){
+                                         x = gsub("@\\w+", "", x) # remove at(@)
+                                         x = gsub("[[:punct:]]", "", x) # remove punctuation
+                                         x = gsub("[[:digit:]]", "", x) # remove numbers/Digits
+                                         x = gsub("http\\w+", "", x)  # remove links http
+                                         x = gsub("[ |\t]{2,}", "", x) # remove tabs
+                                         x = gsub("^ ", "", x)  # remove blank spaces at the beginning
+                                         x = gsub(" $", "", x) # remove blank spaces at the end   
+                                       }
+)
+)
+Test_bodypositive_clean[,c("text_id","TOXICITY")]<-final_df_bodypositive[,c("text_id","TOXICITY")]
 
-x = gsub(&quot;[|\t]{2,}&quot;, &quot;&quot;, x) # remove tabs
+View(Test_bodypositive_clean)
+write.xlsx(Test_bodypositive_clean, "final_bodypositive_clean.xlsx")
 
-x = gsub(&quot;^ &quot;, &quot;&quot;, x) # remove blank spaces at the beginning
+##clean anit-racism dataset
+View(final_racial)
+final_racial_clean <- NA
 
-x = gsub(&quot; $&quot;, &quot;&quot;, x) # remove blank spaces at the end
+#Final_LGBTQ_clean <- Final_LGBTQ[,c("text_id","TOXICITY","Dummy")]
 
-}
+final_racial_clean <- data.frame(sapply(final_racial[,c("text")],
+                                                 function(x){
+                                                   x = gsub("@\\w+", "", x) # remove at(@)
+                                                   x = gsub("[[:punct:]]", "", x) # remove punctuation
+                                                   x = gsub("[[:digit:]]", "", x) # remove numbers/Digits
+                                                   x = gsub("http\\w+", "", x)  # remove links http
+                                                   x = gsub("[ |\t]{2,}", "", x) # remove tabs
+                                                   x = gsub("^ ", "", x)  # remove blank spaces at the beginning
+                                                   x = gsub(" $", "", x) # remove blank spaces at the end   
+                                                 }
+)
+)
+final_racial_clean[,c("text_id","TOXICITY")]<-final_racial[,c("text_id","TOXICITY")]
+
+View(final_racial_clean)
+
+write.xlsx(final_racial_clean, "final_racial_clean.xlsx")
+
+  
 
 )
 
