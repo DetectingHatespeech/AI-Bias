@@ -42,6 +42,19 @@ The above discussed studies show that some marginalized groups might be disadvan
 
 ## **3. Methodology**
 
+We have decided to focus our analysis on four social groups that are prominently fighting against their marginalization via social media. These are the anti-racism movement (example hashtags: #blackempowerment), feminism (#womenempowerment), the LGBT community (#pride), and body-positivity (#allbodiesarebeautiful). For each movement, we identified five prominent hashtags that are primarily aligned with positive speech. Several examples are mentioned above, the full list can be found in the code in the repository. Per group, we scraped 25.000 tweets using minet. Minet (https://github.com/medialab/minet) is a webmining library for python that can extract content from, among others, Twitter. We limited our search to only original tweets (i.e., no replies) and no links to exclude images and articles. The focus on original tweets results in a higher quality dataset. Replies often contain purely hashtags or are hard to interpret out of context. Tweets with links often include little genuine text. The limitation on 25.000 tweets was done based on the constraints of our project. The Perspective API runs at a maximum speed of 1 query/second. A limitation on 25.000 tweets allowed us to run one dataset per night.
+
+In the second step, we cleaned the data set, removing data distorting elements. These are emoji’s, symbols and hashtags, tags (@), punctuation, digits and tabs. This was carried out with the open source software R. 
+
+The final datasets were then run through the Perspective API to assign a toxicity score. Here, we relied on the peRspective library (https://github.com/favstats/peRspective/), which significantly simplifies the use of the software by creating a library for R. The R script used for analysis is shared in the repository.
+
+One of the inherent limitations to the way we built our datasets comes from the choice of hashtags, which may or not be used to express support for our four groups. To gain an initial overview of our data, we tried to count the proportion of anti-BLM, anti-body positivity, anti-feminism or anti-LGBTQ tweets by labelling manually, for each dataset, the 100 most-toxic tweets according to Perspective and and a random sample of 100 tweets. The details of this analysis are presented below.
+
+We then created Scattertexts in Python. Scattertext (https://github.com/JasonKessler/scattertext) is a python library that creates helpful data visualizations for texts. It extracts terms from texts and analyses them based on a chosen classifier, here a toxicity score above or below 0.7. This score is the same as advised by Perspective API and as used by the New York Times. The visualizations, shown further below, place terms on a scale from Infrequent to frequent per category. This allowed us to identify the main terms present primarily in toxic tweets which guided our further analysis. Given the large amount of noise in our dataset, we were unable to rely only on quantitative methods like scattertext. We extracted the underlying dataset the scattertext is built upon, which is essentially a frequency list of the terms used in the tweets per category.
+
+We used these frequency lists to guide a qualitative analysis. First, we identified all terms which appear more often in toxic than non-toxic tweets. Second, we ordered the terms based on frequency, beginning with the most common and thus relevant terms. Based on the list, we identified key terms that are also used positively, based upon an initial screening of the tweets. These were words like “gay”, “Blacks”, “vaginas”, or “ass”. We then filtered the original tweet data set to read and analyse “toxic” tweets containing the identified terms. Out of these lists, we identified tweets that appeared representative of wider misidentification of “toxicity”. For example, the term “vagina” appeared XX times, out of which XX times in toxic tweets. This signals a likely systematic error of the Perspective system since vagina is also an official term. We then marked several tweets as likely mismatch to inductively identify common patterns of the algorithm. Based on the large datasets, this allowed us to get a good understanding of the main “triggers” of the algorithm.
+
+
 ## **4. Distribution of positive/negative language**
 
 Perspective&#39;s understanding of &quot;toxic language&quot; is highly dependent on normative decisions: the use of slurs for example may be seen as inherently &quot;rude, disrespectful and unreasonable&quot; or not, especially in the context of activism, where they might me &quot;appropriated&quot; in a non-derogatory manner for instance &quot;to strengthen in-group solidarity&quot; (Croom 2010: 243). By contrast, our definition of negative language (as any speech critical of BLM, feminism, body positivity or LGBTQ) and positive language (as any speech supportive of BLM, feminism, body positivity or LGBTQ) helps us label our datasets without making too many normative assumptions. And yet, some of the tweets may not be &quot;critical&quot; or &quot;supportive&quot; or we may lack sufficient context to decide whether they are. In such cases, tweets are labelled as &quot;unclear&quot;. Rather than to label the 100000 tweets, we use two different types of samples for each dataset:
@@ -84,3 +97,43 @@ Inputs from science and technology studies and the internet governance literatur
 However, remedy actions such as those provided for in the Digital Services Act will not be enough to mitigate the discriminatory potential of algorithmic moderation tools like Perspective, which should also be addressed at their roots, that is at the design stage of the algorithm. According to Rieder &amp; Skop (2021: 3), Perspective cannot be reduced to a &quot;singular object&quot; but must be seen as &quot;an entry point into a complex arrangement of work processes, technologies, partnerships, and normative choices&quot;. They identify two competing organisational logics within the Perspective project: a &quot;multi-polar model&quot; inspired by academic norms and open-source practices, and a &quot;platform model&quot; which is profit-oriented and involves &quot;processes of cultural normalization&quot; (Rieder &amp; Skop 2021: 10). The multi-polar model materialises through &quot;practices like open communication, code sharing, academic involvement, and the technical setup as a Web-API&quot; (Rieder &amp; Skop 2021: 13). However, the authors argue that Perspective tends to shift toward a more closed organizational structure where the supervising role of Google constrains possibilities for dialogue and contradiction. This shift may reduce the ability and willingness of such projects to find ways of mitigating algorithmic discriminatory effects which is why policy-makers need to further encourage open and transparent multi-stakeholder initiatives in the field of online speech moderation.
 
 ## **8. References** 
+
+Baider, F., Assimakopoulos, S., Millar, S. (2017). _Online Hate Speech in the European Union. A Discourse-Analytic Perspective_, SpringerOpen.
+
+Bloch-Wehba, H. (2019). Global Platform Governance: Private Power in the Shadow of the State. _SMU Law Review_ 27. 72(1), 27-80. URL: [ https://ssrn.com/abstract=3247372](https://ssrn.com/abstract=3247372) [Accessed 12.12.2021].
+
+Blue, V. (2017). Google&#39;s comment-ranking system will be a hit with the alt-right. Engadget, 1 September. URL:[https://www.engadget.com/2017-09-01-google-perspective-comment-ranking-system.html](https://www.engadget.com/2017-09-01-google-perspective-comment-ranking-system.html) [Accessed 12.12.2021].
+
+Council of Europe (2020). _Hate Speech. Fact sheet._ URL: [https://www.echr.coe.int/Documents/FS\_Hate\_speech\_ENG.pdf](https://www.echr.coe.int/Documents/FS_Hate_speech_ENG.pdf).
+
+Croom, A. (2011). Slurs. _Language Sciences._ 33(3), 343-358. URL:[https://doi.org/10.1016/j.langsci.2010.11.005](https://doi.org/10.1016/j.langsci.2010.11.005) [Accessed 12.12.2021].
+
+DeNardis, L. &amp; Hackl, A. (2015). Internet governance by social media platforms. _Telecommunications Policy._ 39(9), pp.761–770.
+
+European Commission. (2020). Proposal for a Regulation of the European Parliament and the Council on a Single Market for Digital Services (Digital Services Act) and amending Directive 2000/31/EC. 2020/0361 (COD). URL:[https://digital-strategy.ec.europa.eu/en/library/proposal-regulation-european-parliament-and-council-single-market-digital-services-digital-services](https://digital-strategy.ec.europa.eu/en/library/proposal-regulation-european-parliament-and-council-single-market-digital-services-digital-services) [Accessed 12.12.2021].
+
+Gillespie, T. (2020). Content moderation, AI, and the question of scale. _Big Data &amp; Society_. URL:[https://doi.org/10.1177/2053951720943234](https://doi.org/10.1177/2053951720943234)
+
+Gorwa, R., Binns, R. &amp; Katzenbach, C. (2020). Algorithmic content moderation: Technical and political challenges in the automation of platform governance. _Big Data &amp; Society_. 1-15. URL:[https://journals.sagepub.com/doi/full/10.1177/2053951719897945](https://journals.sagepub.com/doi/full/10.1177/2053951719897945).
+
+Grimmelmann, J. (2015). _The Virtues of Moderation_. 17 Yale J.L. &amp; Tech. URL:[https://digitalcommons.law.yale.edu/yjolt/vol17/iss1/2](https://digitalcommons.law.yale.edu/yjolt/vol17/iss1/2)
+
+Kessler, J. (2017). _Scattertext: a Browser-Based Tool for Visualizing how Corpora Differ_. ACL System Demonstrations. Link to preprint: [arxiv.org/abs/1703.00565](https://arxiv.org/abs/1703.00565)
+
+King, S., &amp; Kinzler, K. D. (2020).Op-Ed: Bias against African American English speakers is a pillar of systemic racism. _LA Times._ [https://www.latimes.com/opinion/story/2020-07-14/african-american-english-racism-discrimination-speech](https://www.latimes.com/opinion/story/2020-07-14/african-american-english-racism-discrimination-speech)
+
+Lopez, K., Muldoon,M., McKeown, J. (2019). One Day of #Feminism: Twitter as a Complex Digital Arena for Wielding, Shielding, and Trolling talk on Feminism, _Lecture Sciences_ 41 (3).
+
+OSCE/ODIHR (2009). _Hate crime laws: A practical guide._ OSCE guide. URL: [https://www.osce.org/odihr/36426](https://www.osce.org/odihr/36426).
+
+Perspective API (n.d.). _Using machine learning to reduce toxicity online_. Perspective API. URL: [https://www.perspectiveapi.com/](https://www.perspectiveapi.com/).
+
+Rieder, B., &amp; Skop, Y. (2021). The fabrics of machine moderation: Studying the technical, normative,  and organizational structure  of Perspective API. _Big Data &amp; Society._ URL:[https://journals.sagepub.com/doi/full/10.1177/20539517211046181](https://journals.sagepub.com/doi/full/10.1177/20539517211046181) [Accessed 12.12.2021].
+
+Röttger, P et al. (2021). _HateCheck: Functional tests for hate speech detection models._ ArXiv. [https://arxiv.org/pdf/2012.15606.pdf](https://arxiv.org/pdf/2012.15606.pdf)
+
+Winner, L. (1980). Do Artifacts Have Politics? _Daedalus_. 109(1), 121-136. URL :[http://www.jstor.org/stable/20024652](http://www.jstor.org/stable/20024652)
+
+Willis, R. (2020). Habermasian utopia our Sunstein&#39;s echo chamber? The &#39;dark side&#39; of hashtag hijacking and feminist activism. _Legal Studies_ 40, 507-526.
+
+Xia, M., Field, A., Tsetkov, Y. (2020). _Demoting racial bias in hate speech detection models_. ArXiv. [https://arxiv.org/abs/2005.12246](https://arxiv.org/abs/2005.12246)
