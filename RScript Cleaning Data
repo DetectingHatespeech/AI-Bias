@@ -1,0 +1,151 @@
+#############################
+
+#AI Biases Group Project
+
+#Data Cleanup
+
+############################
+
+library(openxlsx)
+
+##clean feminism dataset
+
+final\_df\_Women\_clean \&lt;- NA
+
+final\_df\_Women\_clean \&lt;- final\_df\_Women[,c(&quot;text\_id&quot;,&quot;TOXICITY&quot;,&quot;Dummy&quot;)]
+
+final\_df\_Women\_clean \&lt;- data.frame(sapply(final\_df\_Women[,c(&quot;text&quot;,&quot;text\_id&quot;,&quot;TOXICITY&quot;,&quot;Dummy&quot;)],
+
+function(x){
+
+x = gsub(&quot;@\\w+&quot;, &quot;&quot;, x) # remove at(@)
+
+x = gsub(&quot;[[:punct:]]&quot;, &quot;&quot;, x) # remove punctuation
+
+x = gsub(&quot;[[:digit:]]&quot;, &quot;&quot;, x) # remove numbers/Digits
+
+x = gsub(&quot;http\\w+&quot;, &quot;&quot;, x) # remove links http
+
+x = gsub(&quot;[|\t]{2,}&quot;, &quot;&quot;, x) # remove tabs
+
+x = gsub(&quot;^ &quot;, &quot;&quot;, x) # remove blank spaces at the beginning
+
+x = gsub(&quot; $&quot;, &quot;&quot;, x) # remove blank spaces at the end
+
+}
+
+)
+
+)
+
+final\_df\_Women\_clean[,c(&quot;text\_id&quot;,&quot;TOXICITY&quot;,&quot;Dummy&quot;)]\&lt;-final\_df\_Women[,c(&quot;text\_id&quot;,&quot;TOXICITY&quot;,&quot;Dummy&quot;)]
+
+write.xlsx(final\_df\_Women\_clean, &quot;final\_df\_Women\_clean.xlsx&quot;)
+
+##clean LGBTQ dataset
+
+View(Final\_LGBTQ\_clean)
+
+Final\_LGBTQ\_clean \&lt;- NA
+
+Final\_LGBTQ\_clean \&lt;- data.frame(sapply(Final\_LGBTQ[,c(&quot;text&quot;)],
+
+function(x){
+
+x = gsub(&quot;@\\w+&quot;, &quot;&quot;, x) # remove at(@)
+
+x = gsub(&quot;[[:punct:]]&quot;, &quot;&quot;, x) # remove punctuation
+
+x = gsub(&quot;[[:digit:]]&quot;, &quot;&quot;, x) # remove numbers/Digits
+
+x = gsub(&quot;http\\w+&quot;, &quot;&quot;, x) # remove links http
+
+x = gsub(&quot;[|\t]{2,}&quot;, &quot;&quot;, x) # remove tabs
+
+x = gsub(&quot;^ &quot;, &quot;&quot;, x) # remove blank spaces at the beginning
+
+x = gsub(&quot; $&quot;, &quot;&quot;, x) # remove blank spaces at the end
+
+}
+
+)
+
+)
+
+Final\_LGBTQ\_clean[,c(&quot;text\_id&quot;,&quot;TOXICITY&quot;,&quot;Dummy&quot;)]\&lt;-Final\_LGBTQ[,c(&quot;text\_id&quot;,&quot;TOXICITY&quot;,&quot;Dummy&quot;)]
+
+write.xlsx(Final\_LGBTQ\_clean, &quot;Final\_LGBTQ\_clean.xlsx&quot;)
+
+##clean Bodypositive dataset
+
+View(final\_df\_bodypositive\_clean)
+
+Test\_bodypositive\_clean \&lt;- NA
+
+Test\_bodypositive\_clean \&lt;- data.frame(sapply(final\_df\_bodypositive[,c(&quot;text&quot;)],
+
+function(x){
+
+x = gsub(&quot;@\\w+&quot;, &quot;&quot;, x) # remove at(@)
+
+x = gsub(&quot;[[:punct:]]&quot;, &quot;&quot;, x) # remove punctuation
+
+x = gsub(&quot;[[:digit:]]&quot;, &quot;&quot;, x) # remove numbers/Digits
+
+x = gsub(&quot;http\\w+&quot;, &quot;&quot;, x) # remove links http
+
+x = gsub(&quot;[|\t]{2,}&quot;, &quot;&quot;, x) # remove tabs
+
+x = gsub(&quot;^ &quot;, &quot;&quot;, x) # remove blank spaces at the beginning
+
+x = gsub(&quot; $&quot;, &quot;&quot;, x) # remove blank spaces at the end
+
+}
+
+)
+
+)
+
+Test\_bodypositive\_clean[,c(&quot;text\_id&quot;,&quot;TOXICITY&quot;)]\&lt;-final\_df\_bodypositive[,c(&quot;text\_id&quot;,&quot;TOXICITY&quot;)]
+
+View(Test\_bodypositive\_clean)
+
+write.xlsx(Test\_bodypositive\_clean, &quot;final\_bodypositive\_clean.xlsx&quot;)
+
+##clean anit-racism dataset
+
+View(final\_racial)
+
+final\_racial\_clean \&lt;- NA
+
+#Final\_LGBTQ\_clean \&lt;- Final\_LGBTQ[,c(&quot;text\_id&quot;,&quot;TOXICITY&quot;,&quot;Dummy&quot;)]
+
+final\_racial\_clean \&lt;- data.frame(sapply(final\_racial[,c(&quot;text&quot;)],
+
+function(x){
+
+x = gsub(&quot;@\\w+&quot;, &quot;&quot;, x) # remove at(@)
+
+x = gsub(&quot;[[:punct:]]&quot;, &quot;&quot;, x) # remove punctuation
+
+x = gsub(&quot;[[:digit:]]&quot;, &quot;&quot;, x) # remove numbers/Digits
+
+x = gsub(&quot;http\\w+&quot;, &quot;&quot;, x) # remove links http
+
+x = gsub(&quot;[|\t]{2,}&quot;, &quot;&quot;, x) # remove tabs
+
+x = gsub(&quot;^ &quot;, &quot;&quot;, x) # remove blank spaces at the beginning
+
+x = gsub(&quot; $&quot;, &quot;&quot;, x) # remove blank spaces at the end
+
+}
+
+)
+
+)
+
+final\_racial\_clean[,c(&quot;text\_id&quot;,&quot;TOXICITY&quot;)]\&lt;-final\_racial[,c(&quot;text\_id&quot;,&quot;TOXICITY&quot;)]
+
+View(final\_racial\_clean)
+
+write.xlsx(final\_racial\_clean, &quot;final\_racial\_clean.xlsx&quot;)
