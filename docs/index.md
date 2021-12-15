@@ -1,7 +1,7 @@
 # **Decoding Biases in &quot;Toxic&quot; Speech Detection**
 
 The Google Perspective API &amp; minority discrimination
-* [1. Introduction](#introduction)
+* [1. Introduction](#Introduction)
 * [2. Literature Review](#literature-review-and-approach)
 * [3. Methodology](#methodology)
 * [4. Distribution of positive/negative language](#results)
