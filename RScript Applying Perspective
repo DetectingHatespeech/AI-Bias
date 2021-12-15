@@ -1,0 +1,37 @@
+#############################
+
+#AI Biases Group Project
+
+#Applying Perspective AI
+
+############################
+
+setwd(&quot;&quot;)
+
+devtools::install\_github(&quot;favstats/peRspective&quot;)
+
+library(tidyverse)
+
+usethis::edit\_r\_environ()
+
+summary(LGBTQ)
+
+View(LGBTQ)
+
+library(peRspective) #first need to put API key in doc, see instructions on github
+
+library(openxlsx)
+
+##example for applying Perspective to our LGBTQ dataset, this was used analogous to all datasets
+
+complete\_df \&lt;- LGBTQ %\&gt;% prsp\_stream(text = text, #Make sure to add to new data frame.
+
+text\_id = ID, #needs to be unique
+
+score\_model = c(&quot;TOXICITY&quot;), #Choose metrics
+
+languages = &quot;en&quot;) #Specify language
+
+complete\_df$text \&lt;- LGBTQ$text #add text to df
+
+write.xlsx(complete\_df, &quot;LGBTQ\_df.xlsx&quot;)
