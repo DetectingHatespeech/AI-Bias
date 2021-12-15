@@ -8,11 +8,9 @@
 
 setwd("")
 
-devtools::install\_github(&quot;favstats/peRspective&quot;)
-
+devtools::install_github("favstats/peRspective")
 library(tidyverse)
-
-usethis::edit\_r\_environ()
+usethis::edit_r_environ()
 
 summary(LGBTQ)
 
@@ -24,7 +22,7 @@ library(openxlsx)
 
 ##example for applying Perspective to our LGBTQ dataset, this was used analogous to all datasets
 
-ccomplete_df <- LGBTQ %>% prsp_stream(text = text, #Make sure to add to new data frame. 
+complete_df <- LGBTQ %>% prsp_stream(text = text, #Make sure to add to new data frame. 
                      text_id = ID, #needs to be unique
                      score_model = c("TOXICITY"), #Choose metrics
                      languages = "en") #Specify language
